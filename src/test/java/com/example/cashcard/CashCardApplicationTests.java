@@ -251,6 +251,12 @@ class CashCardApplicationTests {
 				.exchange("/cashcards/102", HttpMethod.DELETE, null, Void.class);
 
 		assertThat(deleteResponse.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
+
+		ResponseEntity<String> getResponse = restTemplate
+				.withBasicAuth("kumar", "asd123")
+				.getForEntity("/cashcards/102", String.class);
+
+		assertThat(getResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
 	}
 
 }
